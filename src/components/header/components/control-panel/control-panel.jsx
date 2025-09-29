@@ -1,36 +1,55 @@
 import styled from 'styled-components';
 
 import { Link, useNavigate } from 'react-router-dom';
-
-import { Icon } from '../../../icon';
+import { useDispatch, useSelector } from 'react-redux';
+import { Icon, Button } from '../../../index';
+import { ROLE } from '../../../../constants';
+import {
+	selectUserRole,
+	selectUserLogin,
+	selectUserSession,
+} from '../../../../selectors';
+import { logout } from '../../../../action';
 
 const RightAlight = styled.div`
 	display: flex;
 	justify-content: flex-end;
 `;
 
-const StyledLink = styled(Link)`
-	font-size: 18px;
-	width: 100px;
-	height: 32px;
-	border: 1px solid #000;
-	border-radius: 5px;
+const StyledDiv = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: #eee;
+	gap: 15px;
+	font-size: 20px;
+	font-weight: bold;
 `;
 
 const ControlPanelContainer = ({ className }) => {
 	const navigate = useNavigate();
+	const roleId = useSelector(selectUserRole);
+	const login = useSelector(selectUserLogin);
+	const session = useSelector(selectUserSession);
+	const dispatch = useDispatch();
 
 	return (
 		<div className={className}>
 			<RightAlight>
-				<StyledLink to="/login">Войти</StyledLink>
+				{roleId === ROLE.GUEST ? (
+					<Button>
+						<Link to="/login">Войти</Link>
+					</Button>
+				) : (
+					<StyledDiv>
+						<div>{login}</div>
+						<Link to="#" onClick={() => dispatch(logout(session))}>
+							<Icon id="fa-sign-out" margin="4px 0 0 0" />
+						</Link>
+					</StyledDiv>
+				)}
 			</RightAlight>
 			<RightAlight>
-				<Link to='#' onClick={() => navigate(-1)}>
+				<Link to="#" onClick={() => navigate(-1)}>
 					<Icon id="fa-backward" margin="10px 0 0 0" />
 				</Link>
 				<Link to="/post">

@@ -20,6 +20,7 @@
     ]
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-prettier": "^5.4.1",
     "json-server": "^0.17.4",

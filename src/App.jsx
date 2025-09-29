@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Header, Footer } from './components';
+import { Authorization } from './pages/authorization';
 
 const AppColumn = styled.div`
 	display: flex;
@@ -18,23 +19,15 @@ const Content = styled.div`
 	padding: 120px 0;
 `;
 
-const H2 = styled.h2`
-	text-align: center;
-`;
-
 export const App = () => {
 	return (
 		<AppColumn>
 			<Header />
 			<Content>
 				<div>
-					<H2>Контент страницы</H2>
-					<p>
-						<i className="fa fa-camera-retro fa-lg"></i> fa-lg
-					</p>
 					<Routes>
 						<Route path="/" element={<div>Main</div>} />
-						<Route path="/login" element={<div>Login</div>} />
+						<Route path="/login" element={<Authorization />} />
 						<Route path="/register" element={<div>Registration</div>} />
 						<Route path="/users" element={<div>Users</div>} />
 						<Route path="/post" element={<div>New Post</div>} />
