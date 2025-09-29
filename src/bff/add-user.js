@@ -18,4 +18,4 @@ export const addUser = (regLogin, regPassword) =>
 			registed_at: generateDate(),
 			role_id: 2,
 		}), // body data type must match "Content-Type"
-	});
+	}).then((createdUser) => createdUser.json());
