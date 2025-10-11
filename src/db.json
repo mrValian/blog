@@ -11,15 +11,8 @@
       "login": "user546585",
       "password": "123456",
       "registed_at": "2064-06-05 06:47",
-      "role_id": 2,
+      "role_id": "1",
       "id": "45Bslxv"
-    },
-    {
-      "login": "user",
-      "password": "123456",
-      "registed_at": "2064-01-26 16:12",
-      "role_id": 2,
-      "id": "pzYNEV-"
     },
     {
       "login": "valian",
@@ -27,20 +20,6 @@
       "registed_at": "2057-03-02 20:31",
       "role_id": 2,
       "id": "WCJXmgp"
-    },
-    {
-      "login": "user5465858",
-      "password": "123456",
-      "registed_at": "2057-11-05 08:17",
-      "role_id": 2,
-      "id": "DzhnYlV"
-    },
-    {
-      "login": "valian1",
-      "password": "123456",
-      "registed_at": "2036-12-15 05:05",
-      "role_id": 2,
-      "id": "7z24x3f"
     }
   ],
   "roles": [
