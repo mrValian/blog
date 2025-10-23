@@ -56,15 +56,15 @@ const RegistrationContainer = ({ className }) => {
 	useResetForm(reset);
 
 	const onSbmit = ({ login, password }) => {
-		// console.log(login, password);
 
 		server.register(login, password).then(({ error, res }) => {
 			if (error) {
 				setServerError(`Ошибка запроса: ${error}`);
 				return false;
 			}
-			// console.log(res);
 			dispatch(setUser(res));
+
+			sessionStorage.setItem('userData', JSON.stringify(res));
 		});
 	};
 
