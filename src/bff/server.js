@@ -8,7 +8,8 @@ import {
 	removeUser,
 	fetchPost,
 	addCommentToPost,
-	removePostComment
+	removePostComment,
+	savePost,
 } from './operations';
 
 export const server = {
@@ -22,4 +23,5 @@ export const server = {
 	fetchPost,
 	addCommentToPost,
 	removePostComment,
+	savePost,
 };
