@@ -6,3 +6,4 @@ export * from './button';
 export * from './h2';
 export * from './error-message';
 export * from './content';
+export * from './modal';

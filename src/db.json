@@ -91,48 +91,6 @@
       "published_at": "2036-12-16 03:16",
       "content": "dxfgdfg",
       "id": 1
-    },
-    {
-      "author_id": "001",
-      "post_id": "001",
-      "published_at": "2062-05-04 10:28",
-      "content": "dxfgdfg",
-      "id": 2
-    },
-    {
-      "author_id": "001",
-      "post_id": "001",
-      "published_at": "2064-03-18 19:54",
-      "content": "dxfgdfgjk",
-      "id": 3
-    },
-    {
-      "author_id": "001",
-      "post_id": "001",
-      "published_at": "2063-08-15 21:48",
-      "content": "dxfgdfgjkgjnmhgj",
-      "id": 4
-    },
-    {
-      "author_id": "001",
-      "post_id": "001",
-      "published_at": "2050-10-18 06:32",
-      "content": "dxfgdfgjkgjnmhgjghjgfhjgyh",
-      "id": 5
-    },
-    {
-      "author_id": "001",
-      "post_id": "001",
-      "published_at": "2063-02-28 17:36",
-      "content": "new dfsedfdf",
-      "id": 6
-    },
-    {
-      "author_id": "001",
-      "post_id": "001",
-      "published_at": "2060-01-04 01:33",
-      "content": "new dfsedfdfdwdwdw",
-      "id": 7
     }
   ],
   "sessions": [
@@ -146,6 +104,17 @@
         "roleId": 0
       },
       "id": 1
+    },
+    {
+      "hash": "0.15689698247328875968520378592074848711490631103516",
+      "user": {
+        "id": "001",
+        "login": "alex",
+        "password": "qwe123qwe",
+        "registeredAt": "2020-04-04",
+        "roleId": 0
+      },
+      "id": 2
     }
   ]
 }

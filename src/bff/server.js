@@ -7,7 +7,8 @@ import {
 	updateUserRole,
 	removeUser,
 	fetchPost,
-	addCommentToPost
+	addCommentToPost,
+	removePostComment
 } from './operations';
 
 export const server = {
@@ -20,4 +21,5 @@ export const server = {
 	removeUser,
 	fetchPost,
 	addCommentToPost,
+	removePostComment,
 };
