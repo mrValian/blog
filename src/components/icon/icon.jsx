@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const IconContainer = ({className, id, ...props}) => {
+const IconContainer = ({className, inactive, id, ...props}) => {
 
     return (
 		<div className={className} {...props}>
@@ -16,6 +16,6 @@ export const Icon = styled(IconContainer)`
 	color: ${({disabled}) => disabled ? '#ccc' : '#000'};
 
 	&:hover {
-		cursor: ${({disabled}) => disabled ? '' : 'pointer'};;
+		cursor: ${({inactive}) => inactive ? 'default' : 'pointer'};
 	}
 `;

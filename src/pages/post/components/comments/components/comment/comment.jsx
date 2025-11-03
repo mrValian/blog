@@ -28,7 +28,7 @@ const CommentContainer = ({ className, id, author, publishedAt, content, postId 
 							id="fa-user-circle-o"
 							margin="0 0 0 0"
 							size="18px"
-							onClick={() => {}}
+							inactive={true}
 						/>
 						{author}
 					</div>
@@ -37,7 +37,7 @@ const CommentContainer = ({ className, id, author, publishedAt, content, postId 
 							id="fa-calendar-o"
 							margin="0 0 0 0"
 							size="18px"
-							onClick={() => {}}
+							inactive={true}
 						/>
 						{publishedAt}
 					</div>

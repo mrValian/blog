@@ -1,27 +1,36 @@
 import styled from 'styled-components';
 import { H2 } from '../../components';
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { useParams, useMatch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useServerRequest } from '../../hooks';
 import { Comments, PostContent, PostForm } from './components';
-import { loadPostAsync } from '../../action';
+import { loadPostAsync, RESET_POST_DATA } from '../../action';
 import { selectPost } from '../../selectors';
 
 const PostContainer = ({ className }) => {
 	const dispatch = useDispatch();
 	const params = useParams();
 	const isEditing = useMatch('/post/:id/edit');
+	const isCreating = useMatch('/post');
 	const post = useSelector(selectPost);
 	const requestServer = useServerRequest();
 
+	useLayoutEffect(() => {
+		dispatch(RESET_POST_DATA);
+	}, [dispatch]); // isCreating
+
 	useEffect(() => {
+		if (isCreating) {
+			return;
+		}
+
 		dispatch(loadPostAsync(requestServer, params.id));
-	}, [dispatch, params.id, requestServer]);
+	}, [dispatch, params.id, requestServer, isCreating]);
 
 	return (
 		<div className={className}>
-			{isEditing ? (
+			{isCreating || isEditing ? (
 				<PostForm post={post} />
 			) : (
 				<>
@@ -29,8 +38,6 @@ const PostContainer = ({ className }) => {
 					<Comments comments={post.comments} postId={post.id} />
 				</>
 			)}
-			{/* <PostContent post={post} /> */}
-			{/* <Comments comments={post.comments} postId={post.id} /> */}
 		</div>
 	);
 };
