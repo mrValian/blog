@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { H2, Icon } from '../../../../components';
-import { SpecialPanel } from '../special-panel/special-pane';
+import { SpecialPanel } from '../special-penal/special-penal';
 import { useNavigate } from 'react-router-dom';
 
 const PostContentContainer = ({

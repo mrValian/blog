@@ -32,7 +32,7 @@ const CommentsContainer = ({ className, comments, postId }) => {
 					id="fa-paper-plane-o"
 					margin="0 0 0 0"
 					size="18px"
-					onClick={() => onNewCommentAdd(userId, postId, newComment)}
+					onClick={() => onNewCommentAdd(postId, userId, newComment)}
 				/>
 			</div>
 			<div className="comments">

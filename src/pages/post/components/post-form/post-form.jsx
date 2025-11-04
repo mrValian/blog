@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useLayoutEffect, useRef, useState } from 'react';
 import { Icon, Input } from '../../../../components';
-import { SpecialPanel } from '../special-panel/special-pane';
+import { SpecialPanel } from '../special-penal/special-penal';
 import { sanitizeContent } from './utils';
 import { useDispatch } from 'react-redux';
 import { savePostAsync } from '../../../../action';

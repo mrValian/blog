@@ -18,7 +18,7 @@ const PostContainer = ({ className }) => {
 
 	useLayoutEffect(() => {
 		dispatch(RESET_POST_DATA);
-	}, [dispatch]); // isCreating
+	}, [dispatch, isCreating]);
 
 	useEffect(() => {
 		if (isCreating) {
