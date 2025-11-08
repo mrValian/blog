@@ -30,4 +30,5 @@ export const Header = styled(HeaderContainer)`
     box-shadow: 0 -2px 17px #000;
     display: flex;
     justify-content: space-between;
+    z-index: 20;
 `;
