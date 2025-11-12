@@ -10,6 +10,7 @@ import {
 	selectUserSession,
 } from '../../../../selectors';
 import { logout } from '../../../../action';
+import { checkAccess } from '../../../../utils';
 
 const RightAlight = styled.div`
 	display: flex;
@@ -32,6 +33,8 @@ const ControlPanelContainer = ({ className }) => {
 	const session = useSelector(selectUserSession);
 	const dispatch = useDispatch();
 
+	const isAdmin = checkAccess([ROLE.ADMIN], roleId);
+
 	const onLogout = () => {
 		dispatch(logout(session));
 		sessionStorage.removeItem('userData');
@@ -47,10 +50,7 @@ const ControlPanelContainer = ({ className }) => {
 				) : (
 					<StyledDiv>
 						<div>{login}</div>
-						<Link
-							to="#"
-							onClick={onLogout}
-						>
+						<Link to="#" onClick={onLogout}>
 							<Icon id="fa-sign-out" margin="4px 0 0 0" />
 						</Link>
 					</StyledDiv>
@@ -60,12 +60,16 @@ const ControlPanelContainer = ({ className }) => {
 				<Link to="#" onClick={() => navigate(-1)}>
 					<Icon id="fa-backward" margin="10px 0 0 0" />
 				</Link>
-				<Link to="/post">
-					<Icon id="fa-file-text-o" margin="10px 0 0 17px" />
-				</Link>
-				<Link to="/users">
-					<Icon id="fa-users" margin="10px 0 0 17px" />
-				</Link>
+				{isAdmin && (
+					<>
+						<Link to="/post">
+							<Icon id="fa-file-text-o" margin="10px 0 0 17px" />
+						</Link>
+						<Link to="/users">
+							<Icon id="fa-users" margin="10px 0 0 17px" />
+						</Link>
+					</>
+				)}
 			</RightAlight>
 		</div>
 	);
