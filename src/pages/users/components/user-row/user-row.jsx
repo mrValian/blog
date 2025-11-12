@@ -3,6 +3,8 @@ import { Icon } from '../../../../components';
 import { TableRow } from '../table-row/table-row';
 import { useState } from 'react';
 import { useServerRequest } from '../../../../hooks';
+import PropTypes from 'prop-types';
+import { PROP_TYPE } from '../../../../constants';
 
 const UserRowContainer = ({
 	className,
@@ -23,8 +25,7 @@ const UserRowContainer = ({
 	};
 
 	const onRoleSave = (userId, newUserRoleId) => {
-		requestServer('updateUserRole', userId, newUserRoleId)
-		.then(() => {
+		requestServer('updateUserRole', userId, newUserRoleId).then(() => {
 			setInitialRoleId(newUserRoleId);
 		});
 	};
@@ -42,19 +43,15 @@ const UserRowContainer = ({
 							</option>
 						))}
 					</select>
-						<Icon
-							disabled={+selectedRoleId === +initialRoleId ? true: false}
-							id="fa-floppy-o"
-							margin="10px 0 0 10px"
-							onClick={() => onRoleSave(id, selectedRoleId)}
-						/>
+					<Icon
+						disabled={+selectedRoleId === +initialRoleId ? true : false}
+						id="fa-floppy-o"
+						margin="10px 0 0 10px"
+						onClick={() => onRoleSave(id, selectedRoleId)}
+					/>
 				</div>
 			</TableRow>
-			<Icon
-				id="fa-trash-o"
-				margin="10px 0 0 0"
-				onClick={() => onUserRemove(id)}
-			/>
+			<Icon id="fa-trash-o" margin="10px 0 0 0" onClick={() => onUserRemove(id)} />
 		</div>
 	);
 };
@@ -70,3 +67,12 @@ export const UserRow = styled(UserRowContainer)`
 		font-size: 16px;
 	}
 `;
+
+UserRow.PropTypes = {
+	id: PropTypes.string.isRequired,
+	login: PropTypes.string.isRequired,
+	registeredAt: PropTypes.string.isRequired,
+	roleId: PROP_TYPE.ROLE_ID.isRequired,
+	roles: PropTypes.arrayOf(PROP_TYPE.ROLE).isRequired,
+	onUserRemove: PropTypes.func.isRequired,
+};

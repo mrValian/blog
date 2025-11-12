@@ -5,6 +5,7 @@ import { openModal, CLOSE_MODAL, removeCommentAsync } from '../../../../../../ac
 import { useServerRequest } from '../../../../../../hooks';
 import { selectUserRole } from '../../../../../../selectors';
 import { ROLE } from '../../../../../../constants';
+import PropTypes from 'prop-types';
 
 const CommentContainer = ({ className, id, author, publishedAt, content, postId }) => {
 	const dispatch = useDispatch();
@@ -12,14 +13,16 @@ const CommentContainer = ({ className, id, author, publishedAt, content, postId 
 	const userRole = useSelector(selectUserRole);
 
 	const onCommentRemove = (id) => {
-		dispatch(openModal({
-			text: 'Удалить комментарий?',
-			onConfirm: () => {
-				dispatch(removeCommentAsync(requestServer, postId, id));
-				dispatch(CLOSE_MODAL);
-			},
-			onCancel: () => dispatch(CLOSE_MODAL),
-		}));
+		dispatch(
+			openModal({
+				text: 'Удалить комментарий?',
+				onConfirm: () => {
+					dispatch(removeCommentAsync(requestServer, postId, id));
+					dispatch(CLOSE_MODAL);
+				},
+				onCancel: () => dispatch(CLOSE_MODAL),
+			}),
+		);
 	};
 
 	const isAdminOrModerator = [ROLE.ADMIN, ROLE.MODERATOR].includes(userRole);
@@ -49,7 +52,14 @@ const CommentContainer = ({ className, id, author, publishedAt, content, postId 
 				</div>
 				<div className="comment-text">{content}</div>
 			</div>
-			{isAdminOrModerator && <Icon id="fa-trash-o" margin="0 0 0 10px" size="18px" onClick={() => onCommentRemove(id)} />}
+			{isAdminOrModerator && (
+				<Icon
+					id="fa-trash-o"
+					margin="0 0 0 10px"
+					size="18px"
+					onClick={() => onCommentRemove(id)}
+				/>
+			)}
 		</div>
 	);
 };
@@ -77,3 +87,11 @@ export const Comment = styled(CommentContainer)`
 		display: flex;
 	}
 `;
+
+Comment.PropTypes = {
+	postId: PropTypes.string.isRequired,
+	id: PropTypes.number.isRequired,
+	author: PropTypes.string.isRequired,
+	content: PropTypes.string.isRequired,
+	publishedAt: PropTypes.string.isRequired,
+};

@@ -7,6 +7,8 @@ import { useDispatch } from 'react-redux';
 import { savePostAsync } from '../../../../action';
 import { useNavigate } from 'react-router-dom';
 import { useServerRequest } from '../../../../hooks';
+import PropTypes from 'prop-types';
+import { PROP_TYPE } from '../../../../constants';
 
 const PostFormContainer = ({
 	className,
@@ -90,3 +92,7 @@ export const PostForm = styled(PostFormContainer)`
 		white-space: pre-line;
 	}
 `;
+
+PostForm.PropTypes = {
+	post: PROP_TYPE.POST.isRequired,
+};

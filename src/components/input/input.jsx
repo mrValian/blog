@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-const InputContainer = ({ className, ...props }) => {
+const InputContainer = ({ className, width, ...props }, ref) => {
 
 	return (
-		<input className={className} {...props} />
+		<input className={className} {...props} ref={ref} />
 	);
 };
 
@@ -15,3 +16,7 @@ export const Input = styled(InputContainer)`
     margin: 0 0 10px 0;
     font-size: 18px;
 `;
+
+Input.PropTypes = {
+    with: PropTypes.string,
+};
