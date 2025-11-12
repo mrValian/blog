@@ -1,41 +1,65 @@
-// декларвтивный начало
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from './assets/vite.svg';
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
+
+import styled from 'styled-components';
+
+import { Header, Footer, Modal, Error } from './components';
+import { Authorization, Registration, Users, Post, Main } from './pages';
+import { useLayoutEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setUser } from './action';
+import { ERROR_MESAGE } from './constants';
+
+const AppColumn = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 1000px;
+	min-height: 100%;
+	margin: 0 auto;
+	background-color: #fff;
+	position: relative;
+`;
+
+const Page = styled.div`
+	padding: 120px 0 20px;
+`;
 
 export const App = () => {
-	const [count, setCount] = useState(0);
-	const [date] = useState(new Date());
+	const dispatch = useDispatch();
+
+	useLayoutEffect(() => {
+		const currentUserData = JSON.parse(sessionStorage.getItem('userData'));
+
+		if (!currentUserData) {
+			return;
+		}
+
+		dispatch(setUser({
+			...currentUserData,
+			roleId: +currentUserData.roleId,
+		}));
+
+	}, [dispatch]);
 
 	return (
-		<>
-			<div>
-				<a href="https://vite.dev" target="_blank">
-					<img src={viteLogo} className="logo" alt="Vite logo" />
-				</a>
-				<a href="https://react.dev" target="_blank">
-					<img src={reactLogo} className="logo react" alt="React logo" />
-				</a>
-			</div>
-			<h1>Vite + React</h1>
-			<div className="card">
-				<button onClick={() => setCount((count) => count + 1)}>
-					count is {count}
-				</button>
-				<p>
-					Edit <code>src/App.jsx</code> and save to test HMR
-				</p>
-			</div>
-			<p className="read-the-docs">
-				Click on the Vite and React logos to learn more
-			</p>
-			<div>
-				<span>Frontend</span>
-				<div>{date.getFullYear()}</div>
-			</div>
-		</>
+		<AppColumn>
+			<Header />
+			<Page>
+				<div>
+					<Routes>
+						<Route path="/" element={<Main />} />
+						<Route path="/login" element={<Authorization />} />
+						<Route path="/register" element={<Registration />} />
+						<Route path="/users" element={<Users />} />
+						<Route path="/post" element={<Post />} />
+						<Route path="/post/:id" element={<Post />} />
+						<Route path="/post/:id/edit" element={<Post />} />
+						<Route path="*" element={<Error error={ERROR_MESAGE.PAGE_NOT_EXIST} />} />
+					</Routes>
+				</div>
+			</Page>
+			<Footer />
+			<Modal />
+		</AppColumn>
 	);
 };
-// декларвтивный конец
-
